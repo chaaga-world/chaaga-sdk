@@ -99,6 +99,10 @@ class ChaagaRPC {
     getUserName() {
         return this._send('getUserName');
     }
+
+    listFiles() {
+        return this._send('listFiles');
+    }
 }
 
 window.ChaagaRPC = ChaagaRPC;
