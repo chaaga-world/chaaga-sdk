@@ -21,6 +21,7 @@ class ChaagaRPC {
                 return;
             }
             if (method === 'ready' && this._onReady) {
+                console.log('ready')
                 this._onReady(params);
                 return;
             }
@@ -68,6 +69,7 @@ class ChaagaRPC {
         return this._send('getMany', keys);
     }
 
+    // entries: Array of {key: string, value: string|number}
     async setMany(entries) {
         return this._send('setMany', entries);
     }
@@ -102,6 +104,14 @@ class ChaagaRPC {
 
     listFiles() {
         return this._send('listFiles');
+    }
+
+    async isLoggedIn() {
+        return this._send('isLoggedIn');
+    }
+
+    showConnectionModal() {
+        window.parent.postMessage({ method: 'showConnectionModal' }, '*');
     }
 }
 
