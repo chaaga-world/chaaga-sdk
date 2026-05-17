@@ -26,7 +26,7 @@ class ChaagaRPC {
                 return;
             }
             if (method === 'takecontrol' && this._onTakeControl) {
-                this._onTakeControl(params);
+                this._onTakeControl(params[0], params[1]);
                 return;
             }
 
@@ -101,6 +101,9 @@ class ChaagaRPC {
     getUserName() {
         return this._send('getUserName');
     }
+    getRoomId() {
+        return this._send('getRoomId');
+    }
 
     listFiles() {
         return this._send('listFiles');
@@ -112,6 +115,10 @@ class ChaagaRPC {
 
     showConnectionModal() {
         window.parent.postMessage({ method: 'showConnectionModal' }, '*');
+    }
+
+    setGuestUserName(userId, displayName) {
+        return this._send('setGuestUserName', { userId, displayName });
     }
 }
 
